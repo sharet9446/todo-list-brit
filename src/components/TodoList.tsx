@@ -2,6 +2,7 @@
 
 import { useTodos } from "@/hooks/useTodos";
 import { Loader2 } from "lucide-react";
+import TodoItem from "./TodoItem";
 
 export default function TodoList() {
   const { data: todos = [], isLoading, error } = useTodos("all");
@@ -42,15 +43,7 @@ export default function TodoList() {
   return (
     <div className="space-y-2">
       {todos.map((todo) => (
-        <div key={todo.id}>
-          <div>{todo.completed && "✓"}</div>
-
-          <div className="flex-1">
-            <span>{todo.title}</span>
-          </div>
-
-          <div>{new Date(todo.createdAt).toLocaleDateString("ko-KR")}</div>
-        </div>
+        <TodoItem key={todo.id} todo={todo} />
       ))}
     </div>
   );
